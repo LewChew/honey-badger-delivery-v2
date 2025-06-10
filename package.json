@@ -1,0 +1,52 @@
+{
+  "name": "honey-badger-delivery",
+  "version": "1.0.0",
+  "description": "Gamified digital gift delivery app with AI chatbot motivators",
+  "main": "index.js",
+  "scripts": {
+    "install:all": "npm run install:backend && npm run install:mobile",
+    "install:backend": "cd backend && npm install",
+    "install:mobile": "cd mobile && npm install",
+    "dev": "docker-compose up -d",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:mobile": "cd mobile && npx expo start --ios",
+    "build": "npm run build:backend && npm run build:mobile",
+    "build:backend": "cd backend && npm run build",
+    "build:mobile": "cd mobile && npx expo build:ios",
+    "test": "npm run test:backend && npm run test:mobile",
+    "test:backend": "cd backend && npm test",
+    "test:mobile": "cd mobile && npm test",
+    "deploy:vm": "./scripts/deploy-vm.sh",
+    "logs": "docker-compose logs -f",
+    "stop": "docker-compose down",
+    "clean": "docker-compose down -v && docker system prune -f"
+  },
+  "keywords": [
+    "react-native",
+    "ios",
+    "chatbot",
+    "gamification",
+    "fitness",
+    "motivation",
+    "digital-gifts"
+  ],
+  "author": "LewChew",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
